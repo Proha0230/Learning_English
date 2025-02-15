@@ -1,7 +1,5 @@
 <template>
   <div class="main-page">
-    <Header />
-
     <WordsList />
 
     <ButtonAdd
@@ -17,11 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import WordsList from "../src/components/wordsList/index.vue"
-import Header from "../src/components/header/index.vue"
-import ButtonAdd from "../src/components/buttonAdd/index.vue"
-import addWordModal from "../src/components/addWordModal/index.vue"
-import type { TWordForm } from "~/src/components/addWordModal/addWordModal.types"
+import WordsList from "@components/wordsList/index.vue"
+import ButtonAdd from "@components/buttonAdd/index.vue"
+import addWordModal from "@components/Modal/addWordModal/index.vue"
+import type { TWordForm } from "@components/Modal/addWordModal/addWordModal.types"
 
 const isVisibleModalAdd = ref(false)
 

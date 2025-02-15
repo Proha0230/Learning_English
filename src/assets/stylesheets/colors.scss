@@ -1,0 +1,18 @@
+$padding: 2rem;
+
+$background-color: var(--bg);
+$background-additional-color: var(--bg-additional);
+$text-color: var(--text);
+
+
+.light-mode {
+--bg: #FFF;
+--text: #393F4D;
+--bg-additional: #F5F5F5;
+}
+
+.dark-mode {
+  --bg: #20272E;
+  --text: rgba(249, 250, 251, 0.8);
+  --bg-additional: #2A333E;
+}

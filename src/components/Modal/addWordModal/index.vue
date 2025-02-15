@@ -49,10 +49,10 @@
 </template>
 
 <script setup lang="ts">
-import { Modal as AModal, Input as AInput, Form as AForm, notification} from "ant-design-vue"
-import { CloseCircleFilled, CheckCircleFilled } from "@ant-design/icons-vue"
+import { Modal as AModal, Input as AInput, Form as AForm } from "ant-design-vue"
 import type { RuleObject } from "ant-design-vue/es/form"
 import type { TWordForm } from "./addWordModal.types"
+import useNotification from "@composable/useNotification"
 const { Item: AFormItem } = AForm
 
 interface IEmits {
@@ -68,16 +68,9 @@ withDefaults(defineProps<IProps>(), {
   isVisible: false
 })
 
-// вынести
-const [api, contextHolder] = notification.useNotification()
+const { contextHolder, openNotificationError, openNotificationSuccess } = useNotification()
 
 const addWordModalForm = ref()
-
-const rules: Record<string, RuleObject[]> = {
-  word: [{ required: true, message: "Слово обязательно", trigger: "blur", min: 1, max: 20 }],
-  pronunciation: [{ required: true, message: "Произношение обязательно", trigger: "blur", min: 1, max: 20 }],
-  translation: [{ required: true, message: "Перевод обязателен", trigger: "blur", min: 1, max: 20 }]
-}
 
 const newWordData = ref<TWordForm>({
   word: "",
@@ -85,38 +78,37 @@ const newWordData = ref<TWordForm>({
   translation: ""
 })
 
-// вынести
-function openNotificationError() {
-  api.info({
-    message: "Заполните необходимые поля",
-    placement: "topRight",
-    icon: () => h(CloseCircleFilled, { style: 'color: red' })
-  })
-}
-
-// вынести
-function openNotificationUpload() {
-  api.info({
-    message: "Новое слово добавлено",
-    placement: "topRight",
-    icon: () => h(CheckCircleFilled, { style: 'color: green' })
-  })
+const rules: Record<string, RuleObject[]> = {
+  word: [{ required: true, message: "Слово обязательно", trigger: "blur", min: 1, max: 20 }],
+  pronunciation: [{ required: true, message: "Произношение обязательно", trigger: "blur", min: 1, max: 20 }],
+  translation: [{ required: true, message: "Перевод обязателен", trigger: "blur", min: 1, max: 20 }]
 }
 
 function onClick () {
   addWordModalForm.value.validateFields()
   .then(() => {
-    openNotificationUpload()
+    openNotificationSuccess("Новое слово добавлено")
     emit('on-click', newWordData.value)
+    clearForm()
   })
   .catch(() => {
-    openNotificationError()
+    openNotificationError("Заполните необходимые поля")
   })
 }
 
 function onCancel () {
   emit('on-cancel')
-  console.log('cancel')
+  clearForm()
+}
+
+function clearForm() {
+  addWordModalForm.value.clearValidate()
+
+  newWordData.value = {
+    word: "",
+    pronunciation: "",
+    translation: ""
+  }
 }
 
 </script>

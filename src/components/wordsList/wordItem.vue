@@ -53,12 +53,13 @@ function changeVisible() {
 }
 
 .word-item-value {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   padding: 0.5rem;
   border: 0.1rem solid grey;
   border-radius: 0.8rem;
   width: 33%;
   user-select: none;
+  color: $text-color;
 }
 
 .word-item-value_translation {
