@@ -5,7 +5,11 @@
       @back="onClick"
   >
     <template #tags>
-      <div v-text="'Всего слов 0'"/>
+      <div
+          v-if="isWordsListPage"
+          class="header__counter-words"
+          v-text="'Всего слов 0'"
+      />
     </template>
 
     <template #extra>
@@ -35,10 +39,11 @@
 
 <script setup lang="ts">
 import { MenuOutlined } from "@ant-design/icons-vue"
-import dark from "@icons/dark.gif"
-import light from "@icons/light.gif"
+import dark from "@icons/dark.png"
+import light from "@icons/light.png"
 import { PageHeader as APageHeader } from "ant-design-vue"
 import useApp from "@composable/useApp"
+import useGetPath from "@composable/useGetPath"
 
 interface IEmits {
   (event: "on-click-menu"): void
@@ -50,6 +55,7 @@ interface IProps {
 }
 defineProps<IProps>()
 
+const { isWordsListPage } = useGetPath()
 const { isLightMode, onChangeMode } = useApp()
 
 function onClick() {
@@ -68,12 +74,17 @@ function onClick() {
   }
 }
 
+.header__counter-words {
+  font-size: 1.2rem;
+}
+
 .header__menu-icon {
   color: $text-color;
 }
 
 .header__mode-img img {
-  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
 }
 
 </style>

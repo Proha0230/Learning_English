@@ -1,5 +1,6 @@
 <template>
   <a-modal
+      :class="['add-word-modal', getClassForMode]"
       :open="isVisible"
       title="Добавление слова"
       @ok="onClick"
@@ -53,6 +54,7 @@ import { Modal as AModal, Input as AInput, Form as AForm } from "ant-design-vue"
 import type { RuleObject } from "ant-design-vue/es/form"
 import type { TWordForm } from "./addWordModal.types"
 import useNotification from "@composable/useNotification"
+import useApp from "@composable/useApp"
 const { Item: AFormItem } = AForm
 
 interface IEmits {
@@ -68,6 +70,7 @@ withDefaults(defineProps<IProps>(), {
   isVisible: false
 })
 
+const { isLightMode } = useApp()
 const { contextHolder, openNotificationError, openNotificationSuccess } = useNotification()
 
 const addWordModalForm = ref()
@@ -83,6 +86,10 @@ const rules: Record<string, RuleObject[]> = {
   pronunciation: [{ required: true, message: "Произношение обязательно", trigger: "blur", min: 1, max: 20 }],
   translation: [{ required: true, message: "Перевод обязателен", trigger: "blur", min: 1, max: 20 }]
 }
+
+const getClassForMode = computed(() => {
+  return isLightMode.value ? "light-mode" : "dark-mode"
+})
 
 function onClick () {
   addWordModalForm.value.validateFields()
@@ -113,7 +120,17 @@ function clearForm() {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+.add-word-modal {
+  ::v-deep(.ant-modal-content) {
+    background-color: $background-modal-color !important;
+  }
+  ::v-deep(.ant-modal-header) {
+    background-color: $background-modal-color !important;
+  }
+}
+
 .add-word-modal-form {
   margin-top: 2rem;
 }

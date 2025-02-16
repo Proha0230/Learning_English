@@ -25,6 +25,7 @@ export default defineNuxtConfig({
         '@styles': path.resolve(__dirname, "src/assets/stylesheets"),
         '@components': path.resolve(__dirname, "src/components"),
         '@pinia': path.resolve(__dirname, "src/pinia"),
+        '@pages': path.resolve(__dirname, "src/pages"),
         '@composable': path.resolve(__dirname, "composable")
       }
     },

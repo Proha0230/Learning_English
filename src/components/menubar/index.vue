@@ -13,6 +13,7 @@
 import { Menu as AMenu } from "ant-design-vue"
 import { EyeOutlined, LoginOutlined, ReadOutlined } from "@ant-design/icons-vue"
 import type { MenuInfo } from "ant-design-vue/es/menu/src/interface"
+import useApp from "@composable/useApp"
 
 interface IEmits {
   (event: "on-click-menu"): void
@@ -25,6 +26,7 @@ interface IProps {
 defineProps<IProps>()
 
 const router = useRouter()
+const { changeStatusPageLoading } = useApp()
 
 const items = ref([
   {
@@ -48,8 +50,13 @@ const items = ref([
 ])
 
 function changeVisibleMenu(path: string) {
+  changeStatusPageLoading(false)
   emit("on-click-menu")
   router.push(path)
+
+  setTimeout(() => {
+    changeStatusPageLoading(true)
+  }, 200)
 }
 
 function onClickMenu(event: MenuInfo): void {

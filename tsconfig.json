@@ -6,6 +6,7 @@
       "@styles/*": ["./src/assets/stylesheets/*"],
       "@components/*": ["./src/components/*"],
       "@pinia/*": ["./src/pinia/*"],
+      "@pages/*": ["./src/pages/*"],
       "@composable/*": ["./composable/*"],
     }
   }

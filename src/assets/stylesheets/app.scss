@@ -6,3 +6,22 @@
   padding: 0;
 }
 
+.ant-modal-content,
+.ant-modal-header {
+  background-color: $background-modal-color !important;
+}
+
+.ant-modal-title,
+.anticon-close {
+  color: $text-color !important;
+}
+
+.ant-notification-notice {
+  background-color: $background-modal-color !important;
+}
+
+.ant-notification-notice-message,
+.ant-notification-notice-description {
+  color: $text-color !important;
+}
+

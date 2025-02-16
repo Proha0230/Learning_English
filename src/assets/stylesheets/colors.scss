@@ -2,17 +2,20 @@ $padding: 2rem;
 
 $background-color: var(--bg);
 $background-additional-color: var(--bg-additional);
+$background-modal-color: var(--bg-modal);
 $text-color: var(--text);
 
 
 .light-mode {
 --bg: #FFF;
 --text: #393F4D;
+--bg-modal: #F8F8F8;
 --bg-additional: #F5F5F5;
 }
 
 .dark-mode {
   --bg: #20272E;
   --text: rgba(249, 250, 251, 0.8);
+  --bg-modal: #242B34;
   --bg-additional: #2A333E;
 }

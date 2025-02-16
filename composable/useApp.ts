@@ -3,7 +3,7 @@ import { storeToRefs } from "pinia"
 
 export default function useApp() {
     const appStore = useAppStore()
-    const { mode } = storeToRefs(appStore)
+    const { mode, isLoading, isInitialLoading} = storeToRefs(appStore)
 
     const isLightMode = computed(() => {
         return mode.value === "light"
@@ -13,13 +13,29 @@ export default function useApp() {
         return mode.value === "dark"
     })
 
+    const isLoadingPage = computed(() => {
+        return isLoading.value
+    })
+
     function onChangeMode(mode: "dark" | "light") {
         appStore.changeMode(mode)
+    }
+
+    function changeStatusPageLoading(value: boolean) {
+        appStore.changeStatusPageLoading(value)
+    }
+
+    function checkLocalStorage() {
+        appStore.checkLocalStorage()
     }
 
     return {
         isLightMode,
         isDarkMode,
-        onChangeMode
+        isLoadingPage,
+        isInitialLoading,
+        onChangeMode,
+        changeStatusPageLoading,
+        checkLocalStorage
     }
 }
