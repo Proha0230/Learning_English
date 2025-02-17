@@ -8,7 +8,7 @@
       <div
           v-if="isWordsListPage"
           class="header__counter-words"
-          v-text="'Всего слов 0'"
+          v-text="`Всего слов ${wordsCounter}`"
       />
     </template>
 
@@ -44,6 +44,8 @@ import light from "@icons/light.png"
 import { PageHeader as APageHeader } from "ant-design-vue"
 import useApp from "@composable/useApp"
 import useGetPath from "@composable/useGetPath"
+import { useWordsStore } from "@pinia/words"
+import { storeToRefs } from "pinia"
 
 interface IEmits {
   (event: "on-click-menu"): void
@@ -54,6 +56,9 @@ interface IProps {
   title: string
 }
 defineProps<IProps>()
+
+const wordsStore = useWordsStore()
+const { wordsCounter } = storeToRefs(wordsStore)
 
 const { isWordsListPage } = useGetPath()
 const { isLightMode, onChangeMode } = useApp()

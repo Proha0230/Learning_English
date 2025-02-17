@@ -1,6 +1,13 @@
 import path from "path"
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      API_URL: process.env.API_URL,
+      API_URL_WORDS: process.env.API_URL_WORDS,
+      API_URL_WORDS_COUNTER: process.env.API_URL_WORDS_COUNTER
+    }
+  },
   compatibilityDate: '2024-11-01',
   devtools: {
     enabled: true

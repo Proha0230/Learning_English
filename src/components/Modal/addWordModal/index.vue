@@ -28,7 +28,7 @@
         >
           <a-input
             v-model:value="newWordData.pronunciation"
-            placeholder="Введите как оно произносится"
+            placeholder="Введите транскрипцию"
             autocomplete="off"
           />
         </a-form-item>
@@ -71,7 +71,7 @@ withDefaults(defineProps<IProps>(), {
 })
 
 const { isLightMode } = useApp()
-const { contextHolder, openNotificationError, openNotificationSuccess } = useNotification()
+const { contextHolder, openNotificationError } = useNotification()
 
 const addWordModalForm = ref()
 
@@ -83,7 +83,7 @@ const newWordData = ref<TWordForm>({
 
 const rules: Record<string, RuleObject[]> = {
   word: [{ required: true, message: "Слово обязательно", trigger: "blur", min: 1, max: 20 }],
-  pronunciation: [{ required: true, message: "Произношение обязательно", trigger: "blur", min: 1, max: 20 }],
+  pronunciation: [{ required: true, message: "Транскрипция обязательна", trigger: "blur", min: 1, max: 20 }],
   translation: [{ required: true, message: "Перевод обязателен", trigger: "blur", min: 1, max: 20 }]
 }
 
@@ -94,7 +94,6 @@ const getClassForMode = computed(() => {
 function onClick () {
   addWordModalForm.value.validateFields()
   .then(() => {
-    openNotificationSuccess("Новое слово добавлено")
     emit('on-click', newWordData.value)
     clearForm()
   })

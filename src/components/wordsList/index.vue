@@ -2,11 +2,11 @@
   <div class="words-list">
     <div class="words-list__header">
       <span v-text="'Слово'"/>
-      <span v-text="'Произношение'"/>
+      <span v-text="'Транскрипция'"/>
       <span v-text="'Перевод'"/>
     </div>
   <div
-      v-for="(item, index) in itemList"
+      v-for="(item, index) in wordsArray"
       :key="index"
   >
     <word-item :word="item" />
@@ -16,12 +16,18 @@
 
 <script setup lang="ts">
 import wordItem from './wordItem.vue'
+import type { TWordForm } from "@components/Modal/addWordModal/addWordModal.types"
 
-const itemList = ref([{
-  word: 'get up',
-  pronunciation: '(Гет Ап)',
-  translation: "Вставать"
-}])
+interface IProps {
+  wordsArray?: Array<TWordForm>
+}
+withDefaults(defineProps<IProps>(), {
+  wordsArray: () => ([{
+    word: 'get up',
+    pronunciation: '[ɡet][ʌp]',
+    translation: "Вставать"
+  }])
+})
 
 </script>
 

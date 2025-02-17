@@ -32,6 +32,9 @@ import Menubar from "@components/menubar/index.vue"
 import Header from "@components/header/index.vue"
 import useGetPath from "@composable/useGetPath"
 import useApp from "@composable/useApp"
+import { useWordsStore } from "@pinia/words"
+
+const wordsStore = useWordsStore()
 
 const { getBasePath } = useGetPath()
 const { isLightMode, isLoadingPage, isInitialLoading, checkLocalStorage } = useApp()
@@ -65,8 +68,10 @@ function changeVisibleMenu() {
   isVisibleMenu.value = !isVisibleMenu.value
 }
 
-onMounted( () => {
+onMounted( async () => {
   checkLocalStorage()
+  await wordsStore.getPartWordsList(1)
+  await wordsStore.getWordsCounter()
 })
 </script>
 
