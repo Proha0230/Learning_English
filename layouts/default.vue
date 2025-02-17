@@ -49,6 +49,9 @@ const getTitleWithCurrentRoute = computed(() => {
     case '/auth':
       return "Авторизация"
 
+    case '/search':
+      return "Поиск слов"
+
     default:
       return ""
   }
@@ -69,7 +72,7 @@ onMounted( () => {
 
 <style scoped lang="scss">
 .layout {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background-color: $background-color;
 }

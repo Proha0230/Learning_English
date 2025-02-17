@@ -4,13 +4,15 @@ $background-color: var(--bg);
 $background-additional-color: var(--bg-additional);
 $background-modal-color: var(--bg-modal);
 $text-color: var(--text);
+$border-color: var(--border-color);
 
 
 .light-mode {
---bg: #FFF;
---text: #393F4D;
---bg-modal: #F8F8F8;
---bg-additional: #F5F5F5;
+  --bg: #FFF;
+  --text: #393F4D;
+  --bg-modal: #F8F8F8;
+  --bg-additional: #F5F5F5;
+  --border-color: #DDD;
 }
 
 .dark-mode {
@@ -18,4 +20,5 @@ $text-color: var(--text);
   --text: rgba(249, 250, 251, 0.8);
   --bg-modal: #242B34;
   --bg-additional: #2A333E;
+  --border-color: #566573;
 }

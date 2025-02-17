@@ -1,5 +1,10 @@
 <template>
   <div class="words-list">
+    <div class="words-list__header">
+      <span v-text="'Слово'"/>
+      <span v-text="'Произношение'"/>
+      <span v-text="'Перевод'"/>
+    </div>
   <div
       v-for="(item, index) in itemList"
       :key="index"
@@ -20,6 +25,11 @@ const itemList = ref([{
 
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.words-list__header {
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: space-around;
+  color: $text-color;
+}
 </style>

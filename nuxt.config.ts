@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     resolve: {
       alias: {
         '@icons': path.resolve(__dirname, "src/assets/icons"),
+        '@images': path.resolve(__dirname, "src/assets/images"),
         '@styles': path.resolve(__dirname, "src/assets/stylesheets"),
         '@components': path.resolve(__dirname, "src/components"),
         '@pinia': path.resolve(__dirname, "src/pinia"),

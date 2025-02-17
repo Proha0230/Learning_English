@@ -2,14 +2,14 @@
   <div class="info">
     <div> Здравствуй дорогой гость !</div>
 
-    <div v-text="'Если ты сейчас здесь то у тебя скорее всего проблемы с Английским Языком'"/>
+    <div v-text="'Это приложение для изучения Английского Языка'"/>
 
     <div v-text="'Здесь будет большой список слов с их переводом и произношением'"/>
 
-    <div v-text="'Во избежания флуда и прочего возможность добавления/редактирования/удаления дубликатов только у Админа'"/>
+    <div v-text="'Возможность добавления/редактирования/удаления дубликатов только у Администратора'"/>
 
     <div>
-      <span v-text="'Для тебя доступны все слова в разделе '"/>
+      <span v-text="'Все слова доступны в разделе '"/>
       <NuxtLink
           class="info__link"
           to="/"
@@ -18,52 +18,82 @@
       </NuxtLink>
     </div>
 
-    <div v-text="'Слова расположены в трех колонках где:'"/>
+    <div class="info__page">
+      <div v-text="'Слова расположены в трех колонках где:'"/>
 
-    <div>
-      <div v-text="'1) Само слово на Английском Языке'"/>
-      <div v-text="'2) Произношение слова по Русски'"/>
-      <div v-text="'3) Перевод слова на Русский язык - его можно увидеть тапнув/кликнув на пустое поле третьего столбца'"/>
+      <img
+        :src="wordHidden"
+        alt="wordHidden"
+      />
+
+      <div v-text="'Перевод можно увидеть тапнув/кликнув на пустое поле третьего столбца'"/>
+
+      <img
+          :src="wordVisible"
+          alt="wordVisible"
+      />
+
+      <div v-text="'Таким образом ты сможешь сам вспомнить/узнать перевод конкретного слова и проверить себя'"/>
     </div>
 
-    <div v-text="'Таким образом ты сможешь сам вспомнить/узнать перевод конкретного слова и проверить себя'"/>
+    <div class="info__page">
+      <div v-text="'В приложении есть светлая и темная тема'"/>
 
-    <div v-text="'Разработал приложение Proha0230'"/>
+      <img
+          :src="modeLight"
+          alt="modeLight"
+      />
 
-    <div class="info__social">
-      <a
-          class="info__social-item"
-          href="https://t.me/Proha0230"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-        <Telegram />
-        <span
-            class="info__social-item-text"
-            v-text="'@Proha0230'"
-        />
-      </a>
+      <div v-text="'Поменять тему можно нажав на значок солнца'"/>
 
-      <a
-          class="info__social-item"
-          href="https://github.com/Proha0230/Learning_English"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-        <GithubOutlined
-            class="info__social-item-github"
-        />
-        <span
-            class="info__social-item-text"
-            v-text="'@Proha0230'"
-        />
-      </a>
+      <img
+          :src="modeDark"
+          alt="modeDark"
+      />
+    </div>
 
+    <div class="info__page">
+      <div v-text="'Разработал приложение Proha0230'"/>
+
+      <div class="info__social">
+        <a
+            class="info__social-item"
+            href="https://t.me/Proha0230"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+          <Telegram />
+          <span
+              class="info__social-item-text"
+              v-text="'@Proha0230'"
+          />
+        </a>
+
+        <a
+            class="info__social-item"
+            href="https://github.com/Proha0230/Learning_English"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+          <GithubOutlined
+              class="info__social-item-github"
+          />
+          <span
+              class="info__social-item-text"
+              v-text="'@Proha0230'"
+          />
+        </a>
+
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import modeDark from "@images/modeDark.png"
+import modeLight from "@images/modeLight.png"
+import wordHidden from "@images/wordHidden.png"
+import wordVisible from "@images/wordVisible.png"
 import Telegram from "@icons/telegram.vue"
 import { GithubOutlined } from "@ant-design/icons-vue"
 
@@ -117,4 +147,17 @@ import { GithubOutlined } from "@ant-design/icons-vue"
   }
 }
 
+.info__page img {
+  width: 100%;
+}
+
+.info__page {
+  border: 0.1rem solid $border-color;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+}
 </style>

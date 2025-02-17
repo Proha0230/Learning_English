@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { Menu as AMenu } from "ant-design-vue"
-import { EyeOutlined, LoginOutlined, ReadOutlined } from "@ant-design/icons-vue"
+import { EyeOutlined, LoginOutlined, ReadOutlined, SearchOutlined } from "@ant-design/icons-vue"
 import type { MenuInfo } from "ant-design-vue/es/menu/src/interface"
 import useApp from "@composable/useApp"
 
@@ -42,10 +42,16 @@ const items = ref([
     title: 'Option 2',
   },
   {
+    key: 'search',
+    icon: () => h(SearchOutlined),
+    label: 'Поиск слов',
+    title: 'Option 3',
+  },
+  {
     key: 'info',
     icon: () => h(EyeOutlined),
     label: 'О проекте',
-    title: 'Option 3',
+    title: 'Option 4',
   }
 ])
 
@@ -67,6 +73,10 @@ function onClickMenu(event: MenuInfo): void {
 
     case 'wordsList':
       changeVisibleMenu('/')
+      break
+
+    case 'search':
+      changeVisibleMenu('/search')
       break
 
     case 'info':
