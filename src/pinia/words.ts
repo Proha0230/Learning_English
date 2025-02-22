@@ -5,9 +5,15 @@ export const useWordsStore = defineStore("wordsStore", {
     state: () => ({
         wordsArray: [] as Array<TWordForm> | undefined,
         wordsCounter: 0,
+        foundWord: {} as TWordForm,
+        duplicateFound: false,
     }),
 
     actions: {
+        clearRegAndSpace(word: string) {
+            return word.trim().toLowerCase().replace(/\s/g, "")
+        },
+
         async getWordsCounter() {
             const config = useRuntimeConfig()
             try {
@@ -55,7 +61,7 @@ export const useWordsStore = defineStore("wordsStore", {
         },
 
         async uploadWord(dataWord: TWordForm) {
-            const nameWord = dataWord.word
+            const nameWord = this.clearRegAndSpace(dataWord.word)
             const config = useRuntimeConfig()
 
             return await fetch(`${config.public.API_URL_WORDS}/1/${nameWord}.json`, {
@@ -67,9 +73,61 @@ export const useWordsStore = defineStore("wordsStore", {
             })
                 .then(async () => {
                     this.wordsCounter += 1
+                    await this.uploadWordToSearch(dataWord)
                     await this.updateWordsCounter()
                 })
-        }
+        },
+
+        async uploadWordToSearch(dataWord: TWordForm) {
+            const nameWord = this.clearRegAndSpace(dataWord.word)
+            const config = useRuntimeConfig()
+
+            return await fetch(`${config.public.API_URL_WORDS_SEARCH}/${nameWord}.json`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dataWord)
+            })
+                .then(response => response.json())
+                .then((wordObj: TWordForm) => {
+                    this.foundWord = wordObj
+                })
+        },
+
+        async checkForDuplicates(dataWord: string) {
+            const nameWord = this.clearRegAndSpace(dataWord)
+            const config = useRuntimeConfig()
+
+            return await fetch(`${config.public.API_URL_WORDS_SEARCH}/${nameWord}.json`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then((data) => {
+                    if (data) {
+                        this.duplicateFound = true
+                    }
+                })
+        },
+
+        async getWordToSearch(dataWord: string) {
+            const nameWord = this.clearRegAndSpace(dataWord)
+            const config = useRuntimeConfig()
+
+            return await fetch(`${config.public.API_URL_WORDS_SEARCH}/${nameWord}.json`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then((wordObj: TWordForm) => {
+                    this.foundWord = wordObj
+                })
+        },
 
     }
 })

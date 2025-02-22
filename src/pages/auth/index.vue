@@ -87,6 +87,8 @@ function clearForm() {
 .auth {
   display: flex;
   flex-direction: column;
+  position: relative;
+  top: $header-height;
 }
 
 .auth__button {

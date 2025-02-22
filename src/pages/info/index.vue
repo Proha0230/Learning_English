@@ -101,14 +101,15 @@ import { GithubOutlined } from "@ant-design/icons-vue"
 
 <style scoped lang="scss">
 .info {
-  height: $height-page-padding-on;
-  overflow-y: scroll;
+  position: relative;
+  top: $header-height;
+  margin: 0 -1rem;
   font-size: 1.6rem;
   gap: 1rem;
   display: flex;
   flex-direction: column;
   color: $text-color;
-  user-select: none;
+  padding-bottom: 1rem;
 }
 
 .info__link {

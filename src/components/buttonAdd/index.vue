@@ -7,8 +7,6 @@
     <template #icon>
       <DownloadOutlined />
     </template>
-
-    Добавить слово
   </a-button>
 </template>
 
@@ -30,9 +28,14 @@ function onClick() {
 <style scoped>
 
 .button-add {
-  position: absolute;
+  position: fixed;
   bottom: 5rem;
-  right: 2rem
+  right: 4rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 </style>

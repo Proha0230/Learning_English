@@ -73,15 +73,6 @@ onMounted( async () => {
   checkLocalStorage()
   await wordsStore.getPartWordsList(1)
   await wordsStore.getWordsCounter()
-
-  if(document) {
-    // для отключения возможности зума на мобилке
-    document.addEventListener("touchmove", function (event) {
-      if (event.scale !== 1) {
-        event.preventDefault()
-      }
-    }, { passive: false })
-  }
 })
 </script>
 
@@ -90,5 +81,12 @@ onMounted( async () => {
   background-color: $background-color;
   padding: $padding;
   height: $height-layout;
+  overflow: auto;
+
+  ::v-deep(.ant-menu) {
+    z-index: 2;
+    top: $header-height;
+    height: calc(100svh - $header-height - 1rem);
+  }
 }
 </style>

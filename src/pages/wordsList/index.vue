@@ -28,7 +28,7 @@ import useNotification from "@composable/useNotification"
 
 const { contextHolder, openNotificationError, openNotificationSuccess } = useNotification()
 const wordsStore = useWordsStore()
-const { wordsArray } = storeToRefs(wordsStore)
+const { wordsArray, duplicateFound } = storeToRefs(wordsStore)
 
 const isVisibleModalAdd = ref(false)
 
@@ -38,9 +38,15 @@ function changeVisibleModal() {
 
 async function uploadWord(data: TWordForm) {
   try {
-    await wordsStore.uploadWord(data)
-    await wordsStore.getPartWordsList(1)
-    openNotificationSuccess("Новое слово добавлено")
+    await wordsStore.checkForDuplicates(data.word)
+    if (!duplicateFound.value) {
+      await wordsStore.uploadWord(data)
+      await wordsStore.getPartWordsList(1)
+      openNotificationSuccess("Новое слово добавлено")
+    } else {
+      openNotificationError("Такое слово уже есть в списке")
+      duplicateFound.value = false
+    }
   } catch (e) {
     openNotificationError("Ошибка, повторите снова")
   }
@@ -52,7 +58,7 @@ async function uploadWord(data: TWordForm) {
 <style lang="scss" scoped>
 .main-page {
   margin: 0 -2rem;
-  height: $height-page-padding-on;
-  overflow-y: scroll;
+  position: relative;
+  top: $header-height;
 }
 </style>

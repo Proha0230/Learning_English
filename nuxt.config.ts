@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     public: {
       API_URL: process.env.API_URL,
       API_URL_WORDS: process.env.API_URL_WORDS,
-      API_URL_WORDS_COUNTER: process.env.API_URL_WORDS_COUNTER
+      API_URL_WORDS_COUNTER: process.env.API_URL_WORDS_COUNTER,
+      API_URL_WORDS_SEARCH: process.env.API_URL_WORDS_SEARCH
     }
   },
   compatibilityDate: '2024-11-01',
@@ -18,10 +19,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: "/",
     head: {
-      meta: [
-        // для отключения возможности зума на мобилке
-        { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, shrink-to-fit=no" }
-      ]
+      meta: []
     }
   },
   modules: ['@pinia/nuxt'],

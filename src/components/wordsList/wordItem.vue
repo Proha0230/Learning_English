@@ -1,5 +1,7 @@
 <template>
-  <div class="word-item">
+  <div
+      :class="['word-item', { 'word-item-column': mode === 'column'}]"
+  >
     <div
         class="word-item-value"
         v-text="word.word"
@@ -11,7 +13,7 @@
     />
 
     <div
-        :class="['word-item-value', {'word-item-value_translation': isHiddenTranslation}]"
+        :class="['word-item-value', {'word-item-value_translation': isHiddenTranslation && mode === 'inline'}]"
         v-text="word.translation"
         @click="changeVisible"
     />
@@ -19,22 +21,21 @@
 </template>
 
 <script setup lang="ts">
-import { Input as AInput } from "ant-design-vue"
-const {Password: AInputPassword} = AInput
-
 interface IProps {
   word?: {
     word: string
     pronunciation: string
     translation: string
   }
+  mode?: "inline" | "column"
 }
 withDefaults(defineProps<IProps>(), {
   word: () => ({
     word: "",
     pronunciation: "",
     translation: "",
-  })
+  }),
+  mode: "inline"
 })
 
 const isHiddenTranslation = ref(true)
@@ -50,6 +51,16 @@ function changeVisible() {
   padding: 1rem;
   gap: 0.5rem;
   display: flex;
+}
+
+.word-item-column {
+  flex-direction: column;
+  gap: 1rem;
+
+  .word-item-value {
+    width: calc(100% - 1rem);
+    height: 2rem;
+  }
 }
 
 .word-item-value {

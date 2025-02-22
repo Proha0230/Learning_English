@@ -73,11 +73,23 @@ function onClick() {
 <style scoped lang="scss">
 .header {
   color: $text-color;
-  padding: 0;
   height: $header-height;
+  position: absolute;
+  width: calc(100vw);
+  top: 0;
+  left: 0;
+  padding: 3rem $padding;
+  align-items: center;
+  display: flex;
+  background-color: $background-color;
+  z-index: 2;
 
   ::v-deep(.ant-page-header-heading-title) {
     color: $text-color;
+  }
+
+  ::v-deep(.ant-page-header-heading) {
+    width: 100%;
   }
 }
 
