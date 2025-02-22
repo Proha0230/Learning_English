@@ -15,10 +15,3 @@ const { Search: AInputSearch } = Input
 
 const wordData = ref()
 </script>
-
-<style scoped lang="scss">
-.search {
-  padding: $padding;
-}
-
-</style>

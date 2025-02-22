@@ -83,10 +83,8 @@ function clearForm() {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
 .auth {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
 }

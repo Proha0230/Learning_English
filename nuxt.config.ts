@@ -13,13 +13,14 @@ export default defineNuxtConfig({
     enabled: true
   },
   nitro: {
-    preset: 'static' // Генерируем статические файлы
+    preset: 'static'
   },
   app: {
-    baseURL: "/", // Убедитесь, что базовый путь корректен
+    baseURL: "/",
     head: {
       meta: [
-        { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" }
+        // для отключения возможности зума на мобилке
+        { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, shrink-to-fit=no" }
       ]
     }
   },

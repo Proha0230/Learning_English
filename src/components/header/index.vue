@@ -31,7 +31,7 @@
 
     <template #backIcon>
       <MenuOutlined
-        class="header__menu-icon"
+        :class="['header__menu-icon', { 'header__menu-icon_blue': menuOpen }]"
       />
     </template>
   </a-page-header>
@@ -54,6 +54,7 @@ const emit = defineEmits<IEmits>()
 
 interface IProps {
   title: string
+  menuOpen: boolean
 }
 defineProps<IProps>()
 
@@ -72,7 +73,8 @@ function onClick() {
 <style scoped lang="scss">
 .header {
   color: $text-color;
-  padding: $padding;
+  padding: 0;
+  height: $header-height;
 
   ::v-deep(.ant-page-header-heading-title) {
     color: $text-color;
@@ -85,6 +87,10 @@ function onClick() {
 
 .header__menu-icon {
   color: $text-color;
+}
+
+.header__menu-icon_blue {
+  color: #1677ff;
 }
 
 .header__mode-img img {

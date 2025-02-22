@@ -100,10 +100,10 @@ import { GithubOutlined } from "@ant-design/icons-vue"
 </script>
 
 <style scoped lang="scss">
-
 .info {
+  height: $height-page-padding-on;
+  overflow-y: scroll;
   font-size: 1.6rem;
-  padding: $padding;
   gap: 1rem;
   display: flex;
   flex-direction: column;

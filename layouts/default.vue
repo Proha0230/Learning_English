@@ -3,6 +3,7 @@
     <div v-if="isInitialLoading">
       <Header
         :title="getTitleWithCurrentRoute"
+        :menuOpen="isVisibleMenu"
         @on-click-menu="changeVisibleMenu"
       />
 
@@ -72,13 +73,22 @@ onMounted( async () => {
   checkLocalStorage()
   await wordsStore.getPartWordsList(1)
   await wordsStore.getWordsCounter()
+
+  if(document) {
+    // для отключения возможности зума на мобилке
+    document.addEventListener("touchmove", function (event) {
+      if (event.scale !== 1) {
+        event.preventDefault()
+      }
+    }, { passive: false })
+  }
 })
 </script>
 
 <style scoped lang="scss">
 .layout {
-  min-height: 100vh;
-  width: 100vw;
   background-color: $background-color;
+  padding: $padding;
+  height: $height-layout;
 }
 </style>

@@ -48,3 +48,11 @@ async function uploadWord(data: TWordForm) {
   changeVisibleModal()
 }
 </script>
+
+<style lang="scss" scoped>
+.main-page {
+  margin: 0 -2rem;
+  height: $height-page-padding-on;
+  overflow-y: scroll;
+}
+</style>
