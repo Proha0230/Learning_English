@@ -5,6 +5,8 @@
   margin: 0;
   padding: 0;
   user-select: none;
+  // для отключения возможности зума на мобилке
+  touch-action: none;
 }
 
 .ant-modal-content,

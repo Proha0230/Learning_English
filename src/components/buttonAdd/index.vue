@@ -29,7 +29,7 @@ function onClick() {
 
 .button-add {
   position: fixed;
-  bottom: 5rem;
+  bottom: 11rem;
   right: 4rem;
   padding: 2rem;
   display: flex;

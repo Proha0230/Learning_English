@@ -6,7 +6,7 @@
   >
     <template #tags>
       <div
-          v-if="isWordsListPage"
+          v-if="isWordsListPage || isSearchPage"
           class="header__counter-words"
           v-text="`Всего слов ${wordsCounter}`"
       />
@@ -61,7 +61,7 @@ defineProps<IProps>()
 const wordsStore = useWordsStore()
 const { wordsCounter } = storeToRefs(wordsStore)
 
-const { isWordsListPage } = useGetPath()
+const { isWordsListPage, isSearchPage } = useGetPath()
 const { isLightMode, onChangeMode } = useApp()
 
 function onClick() {

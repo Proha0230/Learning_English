@@ -3,3 +3,7 @@ export type TWordForm = {
     pronunciation: string,
     translation: string
 }
+
+export type TWordObjList = {
+    [key: string]: TWordForm
+}

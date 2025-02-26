@@ -82,9 +82,9 @@ const newWordData = ref<TWordForm>({
 })
 
 const rules: Record<string, RuleObject[]> = {
-  word: [{ required: true, message: "Слово обязательно", trigger: "blur", min: 1, max: 20 }],
-  pronunciation: [{ required: true, message: "Транскрипция обязательна", trigger: "blur", min: 1, max: 20 }],
-  translation: [{ required: true, message: "Перевод обязателен", trigger: "blur", min: 1, max: 20 }]
+  word: [{ required: true, message: "Слово обязательно", trigger: "blur", min: 1, max: 40 }],
+  pronunciation: [{ required: true, message: "Транскрипция обязательна", trigger: "blur", min: 1, max: 40 }],
+  translation: [{ required: true, message: "Перевод обязателен", trigger: "blur", min: 1, max: 40 }]
 }
 
 const getClassForMode = computed(() => {

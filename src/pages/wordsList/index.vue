@@ -2,6 +2,9 @@
   <div class="main-page">
     <WordsList
       :words-array="wordsArray"
+      :currentWordsPage="currentWordsPage"
+      :allPagesWords="allWordsPage"
+      @on-update-pagination="onChangePagination"
     />
 
     <ButtonAdd
@@ -28,7 +31,7 @@ import useNotification from "@composable/useNotification"
 
 const { contextHolder, openNotificationError, openNotificationSuccess } = useNotification()
 const wordsStore = useWordsStore()
-const { wordsArray, duplicateFound } = storeToRefs(wordsStore)
+const { wordsArray, duplicateFound, currentWordsPage, allWordsPage } = storeToRefs(wordsStore)
 
 const isVisibleModalAdd = ref(false)
 
@@ -36,12 +39,23 @@ function changeVisibleModal() {
   isVisibleModalAdd.value = !isVisibleModalAdd.value
 }
 
+async function onChangePagination(value: number) {
+  wordsStore.setCurrentWordsPage(value)
+  await wordsStore.getPartWordsList()
+
+  const layout = document.querySelector(".layout")
+  layout?.scrollTo({
+    top: 0,
+    behavior: "smooth" // Плавная прокрутка
+  })
+}
+
 async function uploadWord(data: TWordForm) {
   try {
     await wordsStore.checkForDuplicates(data.word)
     if (!duplicateFound.value) {
       await wordsStore.uploadWord(data)
-      await wordsStore.getPartWordsList(1)
+      await wordsStore.getPartWordsList()
       openNotificationSuccess("Новое слово добавлено")
     } else {
       openNotificationError("Такое слово уже есть в списке")

@@ -17,10 +17,15 @@ export default function useGetPath() {
         return router.currentRoute.value.path === '/info'
     })
 
+    const isSearchPage = computed(() => {
+        return router.currentRoute.value.path === '/search'
+    })
+
     return {
         getBasePath,
         isAuthPage,
         isWordsListPage,
         isInfoPage,
+        isSearchPage
     }
 }

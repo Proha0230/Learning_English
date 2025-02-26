@@ -19,6 +19,7 @@ import loaderLight from "@icons/loading.gif"
   width: 100vw;
   height: 80vh;
   position: absolute;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;

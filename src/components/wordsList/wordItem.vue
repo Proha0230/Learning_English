@@ -69,6 +69,8 @@ function changeVisible() {
   border: 0.1rem solid $border-color;
   border-radius: 0.8rem;
   width: 33%;
+  overflow: auto;
+  text-wrap: nowrap;
   user-select: none;
   color: $text-color;
 }

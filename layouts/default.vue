@@ -69,9 +69,10 @@ function changeVisibleMenu() {
   isVisibleMenu.value = !isVisibleMenu.value
 }
 
-onMounted( async () => {
+onMounted(async () => {
   checkLocalStorage()
-  await wordsStore.getPartWordsList(1)
+  wordsStore.getCurrentWordsPage()
+  await wordsStore.getPartWordsList()
   await wordsStore.getWordsCounter()
 })
 </script>
